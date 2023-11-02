@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点名器</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 100vw;
+            height: 100vh;
+            background-color: skyblue;
+            position: relative;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .mz {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left {
+            width: 300px;
+            /* background-color: #fff; */
+        }
+
+        ul {
+            width: 100%;
+            /* background-color: red; */
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        li {
+            width: 30%;
+            background-image: linear-gradient(90deg, #331bb7, #82c60c,#ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        button {
+            margin-top: 10px;
+            width: 70px;
+            height: 40px;
+            border: none;
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="center">
+            <h3 style="color: #fff; text-align: center; margin-bottom: 20px;">点名器</h3>
+            <div class="mz">
+                <div class="left">
+                    <ul id="ul">
+                        <!-- <li></li> -->
+                    </ul>
+                </div>
+                <div class="right">
+                    <p>幸运儿是:<input type="text"></p>
+                    <button >随机点名</button>
+                    <button>点两个</button>
+                    <button>点男的</button>
+                    <button>点女的</button>
+                    <button>添加姓名</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    const arr = [
+        { name: '张三', sex: 1 },
+        { name: '李四', sex: 2 },
+        { name: '王五', sex: 1 },
+        { name: '赵六', sex: 1 },
+        { name: '李超凡', sex: 1 },
+        { name: '蔡徐坤', sex: 2 },
+        { name: '鸡你太美', sex: 2 },
+        { name: '鸡哥', sex: 2 },
+        { name: '坤哥', sex: 1 },
+        { name: '中分头', sex: 1 },
+        { name: '背带裤', sex: 1 },
+        { name: '我是Ikun', sex: 1 },
+        { name: '你记住', sex: 1 },
+        { name: '哈哈哈', sex: 2 },
+        { name: '啦啦啦', sex: 2 },
+        { name: '芜湖', sex: 2 },
+        { name: '起飞', sex: 1 }
+    ]
+
+    let str = ''
+    arr.forEach(item => {
+        str += `               
+                <li>${item.name}</li>
+                `
+    })
+    console.log(str);
+    document.getElementById('ul').innerHTML = str
+
+</script>
+
+</html>

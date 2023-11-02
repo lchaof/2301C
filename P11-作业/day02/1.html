@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box1"></div>
+    </div>
+
+    <script>
+
+        var box = document.getElementById('box')
+        box.onclick = function () {
+
+            setTimeout(function () {
+                // style.backgroundColor = 'pink'
+                let box1 = document.getElementById('box1')
+                box1.style.backgroundColor = 'pink'
+                console.log(111);
+            }, 2000)
+        }
+
+
+        const arr = [1, 6, 9, 10, 100, 25];
+        const arr1 = []
+        arr.forEach(item => {
+            if (item % 2 == 0) {
+                arr1.push(item)
+            }
+        })
+        console.log('偶数是:' + arr1);
+    </script>
+</body>
+
+</html>

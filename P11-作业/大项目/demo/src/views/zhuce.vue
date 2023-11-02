@@ -1,0 +1,129 @@
+<template>
+    <div class="zhuce">
+
+        <div class="one">
+            <p class="zh">免费注册</p>
+        </div>
+        <div class="form">
+            <van-field v-model="zciphone" label="中国 +86" placeholder="请输入手机号" class="iphone" />
+            <van-field v-model="yzm" center clearable placeholder="请输入4位验证码" class="iphone">
+                <template #button>
+                    <p style="color: #6d9ce8;">获取验证码</p>
+                </template>
+            </van-field>
+            <van-field v-model="zcpassword" placeholder="请设置8-25位(数字+字母)密码" class="iphone" />
+            <van-field v-model="zcqrpassword" type="password" placeholder="请再次输入密码" class="iphone" />
+            <van-button style="width: 100%; margin-top: 20px;" color="#98cfbe">登录</van-button>
+
+        </div>
+        <div class="bottom">
+            <van-radio-group v-model="checked">
+                <van-radio name="1" checked-color="#29a582"></van-radio>
+            </van-radio-group>
+            &ensp;<p class="bottoma">阅读并同意 <span>《用户协议》</span> 和 <span>《隐私政策》</span></p>
+        </div>
+
+
+    </div>
+</template>
+  
+<script lang="ts" setup>
+import { ref } from 'vue';
+// 单选框
+const checked = ref('1');
+// 验证码
+const yzm = ref('');
+// 注册手机号
+const zciphone = ref('')
+// 注册密码
+const zcpassword = ref('')
+// 注册确认密码
+const zcqrpassword = ref('')
+
+
+
+
+
+
+</script>
+  
+<style lang="scss" scoped>
+.zhuce {
+    background-color: #f8f8f8;
+    width: 100vw;
+    height: 100vh;
+}
+
+.one {
+    padding: 30px 20px 0px 30px;
+    // margin-top: 10px;
+
+    // background-color: skyblue;
+}
+
+.zh {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.ccc {
+    font-size: 14px;
+    color: #9f9f9f;
+    // margin-bottom: 10px;
+}
+
+.form {
+    width: 100vw;
+    padding: 10px 20px 10px 20px;
+}
+
+.bottom {
+    // padding: 0 20px;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    span {
+        color: #68a4f2;
+    }
+
+    .bottoma {
+        font-size: 13px;
+    }
+}
+
+.two {
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #3c85ef;
+
+    .twoa {
+        display: flex;
+
+        .pa {
+            margin: 0 10px;
+            color: #ededed;
+        }
+    }
+}
+
+.iphone {
+    background: none !important;
+    border-bottom: 1px solid #eeeeee !important;
+}
+
+.password {
+    background: none !important;
+    border-bottom: 1px solid #eeeeee !important;
+
+
+}
+</style>
+  
