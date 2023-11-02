@@ -10,7 +10,7 @@
       </van-swipe>
     </div>
     <!-- 商品列表 -->
-    <div class="goodslisttext">
+    <div class="goodslisttext" :style="libackgcolor == '#000' ? { 'color': '#fff' } : { 'color': '#000' }">
       <span style="font-size: 12px;">//////</span>&ensp;商品列表&ensp;<span style="font-size: 12px;">//////</span>
     </div>
     <!-- 商品列表 -->
@@ -18,7 +18,8 @@
       <li v-for="item, index in goodsList" :key="item.id">
         <img :src="item.pic" alt="" class="goodsimg">
         <div class="goodstext">
-          <div class="goodstexta">{{ item.name }}</div>
+          <div class="goodstexta" :style="libackgcolor == '#000' ? { 'color': '#fff' } : { 'color': '#000' }">{{ item.name
+          }}</div>
           <div class="price">
             <div class="priceleft">
               <span class="pricea">
@@ -34,6 +35,18 @@
         <div class="goodstop" v-show="item.recommendStatusStr == '推荐'">推荐</div>
       </li>
     </ul>
+
+    <!-- 改变颜色 -->
+    <div class="color" @click="shen">
+      🌙
+    </div>
+
+    <!-- 回到顶部 -->
+    <div class="top">
+      <van-cell />
+
+      <van-back-top />
+    </div>
 
 
 
@@ -58,6 +71,12 @@ const goodscs = ref({
   page: 1,
   pageSize: 10
 })
+// 背景颜色颜色 
+const backgcolor = ref('#f8f8f8')
+// li颜色
+const libackgcolor = ref('#fff')
+// 深色
+const shense = ref('#fff')
 
 
 // 获取轮播图数据
@@ -77,11 +96,26 @@ const getGoodsList = () => {
   })
 }
 getGoodsList()
+
+const shen = () => {
+  // backgcolor.value = '#000'
+  // libackgcolor.value = '#000'
+  // shense.value = '#50a586'
+  if (backgcolor.value != '#000') {
+    backgcolor.value = '#000'
+    libackgcolor.value = '#000'
+    shense.value = '#50a586'
+  } else {
+    backgcolor.value = '#f8f8f8'
+    libackgcolor.value = '#fff'
+    shense.value = '#fff'
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .home {
-  background-color: #f8f8f8;
+  background-color: v-bind(backgcolor);
 }
 
 .bannerimg {
@@ -90,7 +124,7 @@ getGoodsList()
 }
 
 .goodslisttext {
-  background-color: #fff;
+  background-color: v-bind(libackgcolor);
   padding: 15px;
   text-align: center;
 }
@@ -106,9 +140,10 @@ getGoodsList()
     width: 49%;
     list-style: none;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: v-bind(libackgcolor);
     margin-bottom: 10px;
     position: relative;
+
 
     .goodsimg {
       width: 100%;
@@ -169,5 +204,21 @@ getGoodsList()
       border-bottom-right-radius: 10px;
     }
   }
+}
+
+.color {
+  position: fixed;
+  right: 30px;
+  bottom: 90px;
+  width: 40px;
+  height: 40px;
+  background-color: skyblue;
+  line-height: 40px;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 50%;
+  background-color: v-bind(shense);
+  box-shadow: 0 0 10px #ccc;
+
 }
 </style>
