@@ -15,7 +15,7 @@
     </div>
     <!-- 商品列表 -->
     <ul class="goodsul">
-      <li v-for="item, index in goodsList" :key="item.id">
+      <li v-for="item, index in goodsList" :key="item.id" @click="tz(item.id)">
         <img :src="item.pic" alt="" class="goodsimg">
         <div class="goodstext">
           <div class="goodstexta" :style="libackgcolor == '#000' ? { 'color': '#fff' } : { 'color': '#000' }">{{ item.name
@@ -60,7 +60,10 @@
 import Mytabbar from '@/components/mytabbar.vue';
 // 引入接口
 import { querybanner, querygoods } from '../../axios/http'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 // 轮播图数组
 const bannerList = <any>ref([])
@@ -110,6 +113,17 @@ const shen = () => {
     libackgcolor.value = '#fff'
     shense.value = '#fff'
   }
+}
+
+const tz = (id: any) => {
+  console.log(id);
+  router.push({
+    path: '/xq',
+    query: {
+      id: id
+    }
+  })
+
 }
 </script>
 

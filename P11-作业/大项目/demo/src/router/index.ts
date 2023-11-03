@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/yzmlogin',
     name: 'yzmlogin',
     component: () => import('../views/yzmlogin.vue')
+  },
+  {
+    path: '/xq',
+    name: 'xq',
+    component: () => import('../views/xq.vue')
   }
 ]
 
