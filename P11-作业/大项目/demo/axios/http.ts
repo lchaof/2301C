@@ -19,9 +19,4 @@ export const queryxq = (data: {
 
 export const queryflone = ()=>requery.get('/shop/goods/category/all')
 
-export const queryfltwo = (data:{
-    categoryId:any
-    page:any
-    pageSize:any
-})=>requery.post('/shop/goods/list/v2',data)
 
