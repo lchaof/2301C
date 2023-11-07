@@ -16,3 +16,12 @@ export const queryxq = (data: {
     pageSize: any
 }) => requery.post('shop/goods/reputation/v2', data)
 
+
+export const queryflone = ()=>requery.get('/shop/goods/category/all')
+
+export const queryfltwo = (data:{
+    categoryId:any
+    page:any
+    pageSize:any
+})=>requery.post('/shop/goods/list/v2',data)
+

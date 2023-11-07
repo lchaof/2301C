@@ -17,12 +17,14 @@ class Requery {
     constructor() {
         this.http = axios.create({
             baseURL: "https://api.it120.cc/xiaochengxu/",
-            headers:{
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            // headers:{
+            //     'Content-Type': 'application/x-www-form-urlencoded'
+            // }
         })
         this.http.interceptors.request.use(config => {
-
+            config.headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
             return config
         })
         this.http.interceptors.response.use(err => {
