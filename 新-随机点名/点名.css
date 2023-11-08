@@ -9,7 +9,7 @@
   -webkit-text-fill-color: transparent;
 }
 body {
-  background-image: url(image/1.gif);
+  background-image: url(image/2.gif);
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
 }
@@ -38,6 +38,7 @@ body {
 }
 .left ul {
   width: 700px;
+  margin-left: 100px;
   display: flex;
   flex-wrap: wrap;
 }
