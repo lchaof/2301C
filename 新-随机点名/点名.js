@@ -1,7 +1,8 @@
-// 原始数据
-// name:名字
-// sex:性别 1代表女 0代表男
-// 总数据
+/**
+ * 原始数据
+ * name:名字,sex:性别 1代表女 0代表男
+ * 总数据
+ */
 const list = [
     { id: 1, name: '盖伦', sex: 0 },
     { id: 2, name: '卡莎', sex: 1 },
@@ -47,15 +48,21 @@ const list = [
     { id: 42, name: '霞', sex: 1 },
     { id: 43, name: '吴E凡', sex: 0 },
 ]
-// 拷贝的数据
+/**
+ * 拷贝的数据
+ */
 let CVlist = [...list]
-console.log(CVlist.length);
-
-// 男生数组
+/**
+ * 男生数组
+ */
 const boys = []
-// 女生数组
+/**
+ * 女生数组
+ */
 const girls = []
-// 男生女生数组添加数据函数
+/**
+ * 男生女生数组添加数据函数
+ */
 addBoyGirls()
 function addBoyGirls() {
     CVlist.forEach(item => {
@@ -66,26 +73,41 @@ function addBoyGirls() {
         }
     })
 }
-
-// 获取ul
+/**
+ * 获取ul
+ */
 const ul = document.getElementsByTagName('ul')[0]
-// 获取时间
+/**
+ * 获取时间
+ */
 const time = document.getElementsByClassName('time')[0]
-// 获取选中的人
+/**
+ * 获取选中的人
+ */
 const XZname = document.getElementById('name')
-// 获取单人点名按钮
+/**
+ * 获取单人点名按钮
+ */
 const btnOne = document.getElementById('btnOne')
-// 获取双人点名按钮
+/**
+ * 获取双人点名按钮
+ */
 const btnTwo = document.getElementById('btnTwo')
-// 男生点名按钮
+/**
+ * 男生点名按钮
+ */
 const btnBoy = document.getElementById('btnBoy')
-// 获取女生点名按钮
+/**
+ * 获取女生点名按钮
+ */
 const btnGirls = document.getElementById('btnGirls')
-// 获取li
-
-var xrcolor = ''
-
-// 渲染dom
+/**
+ * 定义计时器
+ */
+var xrcolor;
+/**
+ * 渲染dom
+ */
 xrdom()
 function xrdom() {
     ul.innerHTML = ''
@@ -96,7 +118,6 @@ function xrdom() {
         ul.appendChild(li)
     })
 }
-
 /**
  * 获取当前时间
  */
@@ -109,7 +130,10 @@ function getCurrentTime() {
     // 渲染至页面
     time.innerText = "\u65F6\u95F4: ".concat(times);
 }
-/**封装日期的函数 */
+/**
+ * 封装日期的函数
+ * @returns 封装日期的函数
+ */
 function dateFormat() {
     var dt = new Date();
     var y = dt.getFullYear();
@@ -122,43 +146,96 @@ function dateFormat() {
     // 可以根据需要输出相对应的时间格式
     return "".concat(y, "-").concat(m, "-").concat(d, " ").concat(hh, ":").concat(mm, ":").concat(ss);
 }
-// 封装随机数函数
+/**
+ * 封装随机数函数
+ * @param {*} array 传递进来的数组
+ * @returns 返回的是获取到的随机数
+ */
+
 function randomNum(array) {
     let big = array.length
     return Math.floor(Math.random() * big)
 }
-// 单人点名
+
+/**
+ * 关闭计时器
+ * @returns 关闭定时器函数
+ */
+function delclearInterval() {
+    if (xrcolor) {
+        clearInterval(xrcolor)
+    }
+}
+
+/**
+ * 开启定时器
+ * @returns 开启定时器函数
+ */
+function addsetInterval() {
+    xrcolor = setInterval(() => {
+        xrdom()
+    }, 100);
+}
+
+/**
+ * 删除单人函数
+ * @returns 删除单人函数
+ */
+function delone(delId) {
+    CVlist = CVlist.filter(item => item.id != delId)
+}
+
+/**
+ * 删除多人函数
+ * @returns 删除多人函数
+ */
+function deltwo(oneid, twoid) {
+    CVlist = CVlist.filter(item => item.id != oneid).filter(item => item.id != twoid)
+}
+
+/**
+ * 单人点名
+ * @returns 单人点名函数
+ */
 function btnone() {
+    // 清除定时器
+    delclearInterval()
+    // 判断名字
     if (btnOne.innerText == '单人点名') {
         btnOne.innerText = '停止点名'
         // 计时器执行渐变色
-        xrcolor = setInterval(() => {
-            xrdom()
-        }, 100);
+        addsetInterval()
 
     } else {
         // 清除计时器
-        clearInterval(xrcolor)
+        delclearInterval()
         // 更改文字
         btnOne.innerText = '单人点名'
         // 获取到的下标
-        let index = randomNum(list)
+        let index = randomNum(CVlist)
+        // 添加渐变色
         XZname.style.backgroundImage = randomColor()
-        XZname.innerHTML = list[index].name
-        CVlist.splice(index, 1)
+        // 渲染到天选之人中
+        XZname.innerHTML = CVlist[index].name
+        // 删除选中的人
+        delone(CVlist[index].id)
     }
 }
-// 双人点名
+/**
+ * 双人点名
+ * @returns 双人点名函数
+ */
 function btntwo() {
+    // 清除定时器
+    delclearInterval()
+    // 判断名字
     if (btnTwo.innerText == '双人点名') {
         btnTwo.innerText = '停止点名'
         // 计时器执行渐变色
-        xrcolor = setInterval(() => {
-            xrdom()
-        }, 100);
+        addsetInterval()
     } else {
         // 清除计时器
-        clearInterval(xrcolor)
+        delclearInterval()
         // 更改文字
         btnTwo.innerText = '双人点名'
         // 获取到随机数中的的元素
@@ -175,22 +252,24 @@ function btntwo() {
         let two = CVlist[index]
 
         // 删除数组中的
-        let filterList = CVlist.filter(item => item.id != one.id).filter(item => item.id != two.id)
-        CVlist = filterList
+        deltwo(CVlist[i].id, CVlist[index].id)
     }
 }
-// 男生点名
+/**
+ * 男生点名
+ * @returns 男生点名函数
+ */
 function btnboy() {
-    addBoyGirls()
+    // 清除定时器
+    delclearInterval()
+    // 判断名字
     if (btnBoy.innerText == '男生点名') {
         btnBoy.innerText = '停止点名'
         // 计时器执行渐变色
-        xrcolor = setInterval(() => {
-            xrdom()
-        }, 100);
+        addsetInterval()
     } else {
         // 清除计时器
-        clearInterval(xrcolor)
+        delclearInterval()
         // 更改按钮文字
         btnBoy.innerText = '男生点名'
         // 获取随机数
@@ -202,21 +281,25 @@ function btnboy() {
         // 找到新数组中的下标
         let i = CVlist.findIndex(item => item.id == boys[index].id)
         // 删除数据
-        CVlist.splice(i, 1)
+        delone(boys[index].id)
 
     }
 }
-// 女生点名
+/**
+ * 女生点名
+ * @returns 女生点名函数
+ */
 function btngirls() {
+    // 清除定时器
+    delclearInterval()
+    // 判断名字
     if (btnGirls.innerText == '女生点名') {
         btnGirls.innerText = '停止点名'
         // 计时器执行渐变色
-        xrcolor = setInterval(() => {
-            xrdom()
-        }, 100);
+        addsetInterval()
     } else {
         // 清除计时器
-        clearInterval(xrcolor)
+        delclearInterval()
         // 更改按钮文字
         btnGirls.innerText = '女生点名'
         // 获取随机数
@@ -228,14 +311,20 @@ function btngirls() {
         // 找到新数组中的下标删除数据
         let i = CVlist.findIndex(item => item.id == girls[index].id)
         // 删除数据
-        CVlist.splice(i, 1)
+        delone(girls[index].id)
     }
 }
-// 封装获取渐变颜色
+/**
+ * 封装获取渐变颜色
+ * @returns  封装获取渐变颜色函数
+ */
 function jbColor() {
     return Math.floor(Math.random() * 255)
 }
-// 获取随机颜色
+/**
+ * 获取随机颜色
+ * @returns 获取随机颜色函数
+ */
 function randomColor() {
     return `linear-gradient(to right top, rgb(${jbColor()}, ${jbColor()}, ${jbColor()}), rgb(${jbColor()}, ${jbColor()}, ${jbColor()}))`
 }

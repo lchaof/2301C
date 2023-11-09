@@ -5,10 +5,15 @@
       <h3 style="text-align: center;">~今天我需要做的事情~</h3>
       <div style="text-align: center; margin-top: 20px;">
         <input type="text" placeholder="请输入未完成的list" style="padding: 5px;">
-        <button style="margin-left: 20px;">添加</button>
+        <button style="margin-left: 20px;" @click="add">添加</button>
+      </div>
+      <div class="list">
+
+
       </div>
       <ul>
-        <li :class="gl == index ? 'dj' : ''" v-for="item, index in fl" :key="index" @click="qh(index)">{{ item.name }}</li>
+        <li :class="gl == index ? 'dj' : ''" v-for="item, index in fl" :key="index" @click="qh(index)">{{ item.name }}
+        </li>
 
       </ul>
 
@@ -35,13 +40,22 @@ export default {
           name: "清空所有"
         }
 
+      ],
+      list: [
+        { text: '吃饭', flag: false, show: 1 }
       ]
     };
   },
   methods: {
     qh(index) {
       this.gl = index
-    }
+      if (index == 0) {
+
+      }
+    },
+    add() {
+
+    },
   },
   computed: {},
   filters: {},
@@ -77,6 +91,7 @@ export default {
     border: 1px solid #000;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
+    transform: rotate(5deg);
   }
 
   input {
@@ -94,6 +109,8 @@ export default {
       list-style: none;
       padding: 5px;
       font-size: 14px;
+      cursor: pointer;
+
     }
   }
 
