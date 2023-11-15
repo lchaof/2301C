@@ -40,7 +40,7 @@ export default {
   watch: {},
   created() {
     requeryIndex().then(res => {
-      console.log(res);
+      // console.log(res);
       this.info = res.data
     })
   }

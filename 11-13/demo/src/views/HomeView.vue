@@ -78,7 +78,7 @@ export default {
   methods: {
     // 退出登录
     handleCommand() {
-      localStorage.removeItem('token')
+      localStorage.removeItem('userInfo')
       this.$message({
         message: '退出成功',
         type: 'success'

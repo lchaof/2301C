@@ -35,7 +35,7 @@ export default {
         onSubmit() {
             requeryLogin(this.form).then(res => {
                 console.log(res);
-                localStorage.setItem('token', JSON.stringify(res.data))
+                localStorage.setItem('userInfo', JSON.stringify(res.data))
                 this.$message({
                     message: '登录成功',
                     type: 'success'
